@@ -1,0 +1,20 @@
+@use '../../base/variables' as v;
+@use '../../base/mixins' as m;
+
+.notification-email {
+    width: 95%;
+    display: block;
+    margin: 5rem auto 0 auto;
+    border: 1px solid v.$verdeClaro;
+    padding: 2.5rem;
+    box-shadow: 2px 2px 11px -5px;
+    h1 {
+        font-size: 2.7rem;
+        @include m.phone480 {
+            font-size: 4rem;
+        }
+    }
+    @include m.tablet {
+        width: 70rem;
+    }
+}
