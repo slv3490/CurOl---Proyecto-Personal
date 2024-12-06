@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
             "name" => "admin",
             "email" => "admin@admin.com",
             "last_name" => "admin",
+            "email_verified_at" => "2024-09-10 18:08:07",
             "password" => Hash::make("123123")
         ]);
 
@@ -27,6 +28,7 @@ class UserSeeder extends Seeder
             "name" => "editor",
             "email" => "editor@editor.com",
             "last_name" => "editor",
+            "email_verified_at" => "2024-09-10 18:08:07",
             "password" => Hash::make("editor")
         ]);
 
@@ -36,6 +38,7 @@ class UserSeeder extends Seeder
             "name" => "espectador",
             "email" => "espectador@espectador.com",
             "last_name" => "espectador",
+            "email_verified_at" => "2024-09-10 18:08:07",
             "password" => Hash::make("espectador")
         ]);
 

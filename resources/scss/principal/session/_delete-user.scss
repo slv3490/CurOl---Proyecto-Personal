@@ -1,6 +1,8 @@
 @use '../../base/variables' as v;
+@use '../../base/mixins' as m;
 
 .delete-user-account {
+    margin-bottom: 3rem;
     .formulario input[type="submit"] {
         margin: auto 0 auto auto;
         background-color: v.$rojo;
@@ -11,5 +13,11 @@
     p {
         color: v.$blanco;
     }
-    margin-bottom: 3rem;
+    .confirm-delete-user {
+        display: flex;
+        flex-direction: column;
+        @include m.tablet {
+            flex-direction: row;
+        }
+    }
 }

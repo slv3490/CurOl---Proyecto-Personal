@@ -1,110 +1,132 @@
 @use '../base/variables' as v;
+@use '../base/mixins' as m;
 
 .contenido {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
     align-items: center;
     gap: 3rem;
     max-width: 90rem;
     margin: 5rem auto 0 auto;
     text-align: left;
+    @include m.tablet {
+        flex-direction: row-reverse;
+    }
     img {
         width: 40rem;
     }
+    h3, p {
+        text-align: center;
+        @include m.tablet {
+            text-align: left;
+        }
+    }
     h3 {
-        text-align: left;
+        font-size: 2.5rem;
+        @include m.tablet {
+            font-size: 3rem;
+        }
+    }
+    p {
+        font-size: 1.5rem;
+        @include m.tablet {
+            font-size: 2rem;
+        }
+    }
+    .boton {
+        display: block;
+        text-align: center;
+        @include m.tablet {
+            display: inline-block;
+        }
     }
 
     &:nth-child(2n+1) {
-        flex-direction: row;
+        flex-direction: column;
+        @include m.tablet {
+            flex-direction: row;
+        }
     }
 }
 .imagen-articulo {
     width: 400px;
 }
-.articulos {
-    margin-bottom: 5rem;
-    h2 {
-        margin: 5rem auto;
-    }
-    .cards {
-        margin-top: 5rem;
-        display: flex;
-        justify-content: space-between;
-    }
-}
+
 .cursos-mostrar {
     margin-top: 5rem;
     background-color: lighten($color: v.$gris, $amount: 20);
     border: 1px solid v.$gris;
-    border-top-left-radius: 2rem;
-    border-bottom-left-radius: 2rem;
-    video {
-        width: 40rem;
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    @include m.tablet {
         border-top-left-radius: 2rem;
         border-bottom-left-radius: 2rem;
+        flex-direction: row;
     }
-    .contenedor-art-cursos {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
+    video {
+        display: none;
+        width: 20rem;
+        @include m.desktop {
+            width: 40rem;
+            display: block;
+            border-top-left-radius: 2rem;
+            border-bottom-left-radius: 2rem;
+        }
     }
 }
+.contenedor-art-cursos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2rem;
+}
 .articulo-curso {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     transition-property: background-color, border-radius;
     transition-duration: .3s;
     align-items: center;
+    padding: 2rem;
+    @include m.desktop {
+        flex-direction: row;
+        gap: 1rem;
+    }
+    p {
+        font-size: 1.4rem;
+        text-align: center;
+    }
     img {
         width: 260px;
         transition-property: border-radius;
         transition-duration: .3s;
     }
     h3 {
-        text-align: left;
-        font-size: 2.7rem;
+        margin-top: 1.5rem;
+        text-align: center;
+        font-size: 2.3rem;
+        @include m.tablet {
+            font-size: 2.7rem;
+        }
     }
     &:hover {
         background-color: lighten($color: v.$gris, $amount: 10);
         cursor: pointer;
-        border-top-left-radius: 2rem;
-        border-bottom-left-radius: 2rem;
+        border-radius: 2rem;
+        // border-top-left-radius: 2rem;
+        // border-bottom-left-radius: 2rem;
         img {
-            border-top-left-radius: 2rem;
-            border-bottom-left-radius: 2rem;
+            border-radius: 2rem;
+            // border-top-left-radius: 2rem;
+            // border-bottom-left-radius: 2rem;
         }
     }
 }
 .blogs {
     margin-bottom: 5rem;
-}
-.cards-articulos {
-    margin: 0 2rem;
-    position: relative;
-    width: 300px;
-    overflow: hidden;
-
-    .prueba {
-        max-width: 30rem;
-    }
-    img {
-        width: 30rem;
-        transition: .4s;
-    }
-    h3, p {
-        position: absolute;
-        left: 0;
-        right: 0;
-        color: v.$blanco;
-        z-index: 1;
-    }
-    h3 {
-        top: 10%;
-    }
-    p {
-        bottom: 10%;
-    }
-
 }
 .d-none {
     visibility: hidden;
@@ -160,6 +182,7 @@
         }
     }
     .title-slider {
+        margin-top: 1rem;
         font-size: 1.6rem;
         text-align: left;
         display: -webkit-box;
@@ -191,5 +214,11 @@
     }
     .swiper-button-next::after {
         width: 10px;
+    }
+    .swiper-center-image {
+        a {
+            display: flex;
+            flex-direction: column;
+        }
     }
 }

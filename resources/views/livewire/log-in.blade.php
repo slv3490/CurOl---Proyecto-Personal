@@ -32,6 +32,6 @@
 
     <div class="rutas-user">
         <a href="{{ route("user.create") }}">¿No tienes cuenta? Crear Cuenta.</a>
-        <a class="right" href="{{ route("user.remember") }}">¿Olvidaste tu contraseña? Recuperar Cuenta.</a>
+        <a class="right" href="{{ route("password.request") }}">¿Olvidaste tu contraseña? Recuperar Cuenta.</a>
     </div>
 </div>

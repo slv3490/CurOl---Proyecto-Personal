@@ -7,36 +7,36 @@
             <h2>Cursos</h2>
             <p class="centrar-texto">¡Prueba alguno de nuestros cursos!</p>
 
-            <div class="flex cursos-mostrar">
-                <video muted loop autoplay src="{{ Vite::asset("resources/videos/cocina.mp4") }}"></video>
+            <div class="cursos-mostrar">
+                <video muted loop autoplay src="{{ asset("videos/cocina.mp4") }}"></video>
 
                 <div class="contenedor-art-cursos">
                     <article>
-                        <a class="flex articulo-curso" href="{{ route('payment.create', 10) }}">
+                        <a class="articulo-curso" href="{{ route('cursos', "search=curso+sobre+cocina") }}">
                             <img src="{{ Vite::asset("resources/img/curso-cocina.jpg") }}" alt=" curso de finanzas">
                             <div>
                                 <h3>Cursos Sobre Cocina</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis ea vero iure vel, porro officia. Eum dolorum facere non</p>
+                                <p>Domina el arte culinario con nuestro curso de cocina, donde aprenderás desde técnicas básicas hasta recetas gourmet.</p>
                             </div>
                         </a>
                     </article>
 
                     <article >
-                        <a class="flex articulo-curso" href="">
+                        <a class="articulo-curso" href="{{ route('cursos', "search=curso+de+ingles") }}">
                             <img src="{{ Vite::asset("resources/img/curso-idiomas.jpg") }}" alt=" curso de finanzas">
                             <div>
-                                <h3>Cursos Idiomas Extranjeros</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis ea vero iure vel, porro officia. Eum dolorum facere non</p>
+                                <h3>Curso de Inglés	(Principiante a Avanzado)</h3>
+                                <p>Transforma tu dominio del inglés con nuestro curso integral, diseñado para llevarte desde los fundamentos básicos hasta un nivel avanzado.</p>
                             </div>
                         </a>
                     </article>
 
                     <article>
-                        <a class="flex articulo-curso" href="">
+                        <a class="articulo-curso" href="{{ route('cursos', "search=curso+sobre+finanzas") }}">
                             <img src="{{ Vite::asset("resources/img/curso-finanzas.jpg") }}" alt=" curso de finanzas">
                             <div>
                                 <h3>Cursos Sobre Finanzas</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis ea vero iure vel, porro officia. Eum dolorum facere non</p>
+                                <p>Aprende a gestionar tus finanzas personales e inversiones con estrategias prácticas para asegurar tu futuro financiero. </p>
                             </div>
                         </a>
                     </article>
@@ -51,7 +51,7 @@
                 @forelse ($courses as $course)
                     @if (!$course->lessons->isEmpty())
                         <div class="swiper-slide image">
-                            <div>
+                            <div class="swiper-center-image">
                                 <a href="{{ route('cursos', "search=" . $course->title) }}">
                                     <img src="{{ asset('storage/images/'.$course->image_uri) }}">
                                     <h4 class="title-slider">{{ $course->title }}</h4>

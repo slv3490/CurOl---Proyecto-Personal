@@ -1,0 +1,22 @@
+@use '../base/variables' as v;
+
+@mixin phone {
+    @media (min-width: 375px) { 
+        @content; 
+    }
+}
+@mixin phone480 {
+    @media (min-width: 480px) {
+        @content;
+    }
+}
+@mixin tablet {
+    @media (min-width: 768px) { 
+        @content; 
+    }
+}
+@mixin desktop {
+    @media (min-width: 1024px) { 
+        @content; 
+    }
+}

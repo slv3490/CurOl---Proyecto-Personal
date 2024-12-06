@@ -10,18 +10,35 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ArticlesController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EmailController;
 
 Route::get("/", [IndexController::class, "index"])->name("index");
 Route::get("/cursos", [IndexController::class, "cursos"])->name("cursos");
 Route::get('/iniciar-sesion', [UserController::class, "session"])->name("iniciar-session");
 Route::get('/user/create', [UserController::class, "create"])->name("user.create");
-Route::get('/user/remember', [UserController::class, "remember"])->name("user.remember");
+// Route::get('/user/remember', [UserController::class, "remember"])->name("user.remember");
 Route::get("/articles/meditation", [ArticlesController::class, "articleMeditation"])->name("article.meditation");
 Route::get("/articles/exercise", [ArticlesController::class, "articleExercise"])->name("article.exercise");
 Route::get("/articles/hobbies", [ArticlesController::class, "articleHobbies"])->name("article.hobbies");
 
+//Emails
+Route::get('/email/verify', [EmailController::class, "verificationNotice"])->middleware('auth')->name('verification.notice');
 
-Route::middleware('auth')->group(function () {
+Route::get('/email/verify/{id}/{hash}', [EmailController::class, "verificationVerify"])->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', [EmailController::class, "verificationSend"])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+//Resetting Password
+//Vista
+Route::get('/forgot-password', [EmailController::class, "passwordRequest"])->middleware('guest')->name('password.request');
+//Envio de email
+Route::post('/forgot-password', [EmailController::class, "passwordEmail"])->middleware('guest')->name('password.email');
+//Vista para reestablecer la contraseña
+Route::get('/reset-password/{token}', [EmailController::class, "passwordReset"])->middleware('guest')->name('password.reset');
+
+//Restablecimiento contraseña
+Route::post('/reset-password', [EmailController::class, "passwordUpdate"])->middleware('guest')->name('password.update');
+
+Route::middleware(['auth', "verified"])->group(function () {
     //PAYPAL
     Route::get('/create-payment', [PaymentController::class, 'createPayment'])->name('payment.create');
     Route::get('/payment-success', [PaymentController::class, 'paymentSuccess'])->name('payment.success');
@@ -69,5 +86,5 @@ Route::middleware('auth')->group(function () {
     Route::get("/dashboard/create-categories", [CategoryController::class, "createCategories"])->middleware("user.has.any.permission:read categories,spectator")->name("create-categories");
     Route::post("/dashboard/create-categories", [CategoryController::class, "storeCategories"])->middleware("user.has.any.permission:create categories")->name("store-categories");
     //Logout
-    Route::get("/logout", [UserController::class, "logout"])->name("logout");
 });
+Route::get("/logout", [UserController::class, "logout"])->name("logout");

@@ -4,7 +4,7 @@
     <form class="formulario" id="form-delete-user-account" method="POST" action="{{ route('delete.user.account', Auth::user()->id) }}">
         @csrf
         @method("DELETE")
-        <div class="flex">
+        <div class="confirm-delete-user">
             <p>¿Estas seguro que deseas eliminar tu cuenta? Estos cambios no son reversibles.</p>
             <input type="submit" value="Eliminar Cuenta" class="boton">
         </div>

@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <section class="flex">
+        <section class="section-filter-by-categories">
             <div class="filter-checkbox">
                 <h3 class="mb-2">Filtrar</h3>
                 <form action="{{ route('cursos') }}" method="GET">

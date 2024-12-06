@@ -25,17 +25,10 @@ class CourseRequest extends FormRequest
             "title" => "required",
             "description" => "required|max:255",
             "price" => "required",
-            "image_uri" => "required|image|mimes:jpeg,png,jpg,gif,svg,avif,webp",
+            "image_uri" => "nullable|image|mimes:jpeg,png,jpg,gif,svg,avif,webp",
             "url" => "nullable",
             "user_id" => "nullable",
             "category_id" => "required|exists:categories,id"
         ];
     }
-
-    // public function validationData()
-    // {
-    //     $data = parent::validationData();
-    //     dd($data);  // Depuración aquí
-    //     return $data;
-    // }
 }

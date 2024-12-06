@@ -1,17 +1,31 @@
 @use '../../base/variables' as v;
+@use '../../base/mixins' as m;
 
 
 .rutas-user {
     max-width: 60rem;
-    margin: 3rem auto 0 auto;
+    margin: 3rem auto 3rem auto;
     display: flex;
-    justify-content: space-evenly;
-    gap: 15rem;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4rem;
+    @include m.tablet {
+        flex-direction: row;
+        justify-content: space-evenly;
+        gap: 15rem;
+    }
     a {
         color: v.$negro;
+        text-align: center;
+        @include m.tablet {
+            text-align: left;
+        }
     }
     .right {
-        text-align: right;
+        text-align: center;
+        @include m.tablet {
+            text-align: right;
+        }
     }
 }
 .input-disabled {

@@ -1,4 +1,5 @@
 @use '../base/variables' as v;
+@use '../base/mixins' as m;
 
 .inicio {
     background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)), url("../img/ban.jpg");
@@ -6,40 +7,122 @@
     background-size: cover;
     background-position: left; 
     width: auto;
-    height: 500px;
     position: relative;
+    height: 500px;
+    @include m.tablet {
+        height: 560px;
+    }
+}
+.bg-darken {
+    z-index: 10;
+    background-color: #00000099;
 }
 .header-nav {
     background-color: v.$verde;
 }
+.inicio {
+    .nav {
+        width: 100%;
+        @include m.tablet {
+            width: 95;
+            height: auto;
+        }
+    }
+}
+
 .nav {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 2rem 0 2rem 0;
+    flex-direction: column;
+    margin: 0;
+    @include m.tablet {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 95% !important;
+        gap: 2rem;
+    }
     p {
         font-size: 4rem;
     }
     a {
-        margin: 0 1rem;
+        margin: 0 1rem 2rem 0;
+        @include m.tablet {
+            margin: 0;
+        }
         font-size: 5rem;
     }
-    .enlaces {
+}
+.enlaces {
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+    z-index: 50;
+    @include m.tablet {
+        display: block;
+        background-color: none;
+        visibility: visible;
+        opacity: 100%;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
+        flex-direction: row;
         gap: 2rem;
-        p {
-            margin: .5rem;
-            font-size: 2rem; 
-            transition: .4s;
-            color: v.$blanco;
-            &:hover {
-                transform: scale(1.2);
-                color: v.$azul;
-            }
+    }
+    p {
+        margin: .5rem;
+        font-size: 2rem; 
+        transition: .4s;
+        color: v.$blanco;
+        &:hover {
+            transform: scale(1.2);
+            color: v.$azul;
         }
     }
+}
+.bg-fixed {
+    position: fixed;
+    background-color: #00000099;
+}
+.display-links-nav {
+    visibility: visible;
+    opacity: 100%;
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.nav-burger {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    flex: 1;
+    @include m.tablet {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+.burger {
+    width: 5rem;
+    display: none;
+    @include m.tablet {
+        display: flex;
+        cursor: pointer;
+    }
+}
+
+@include m.desktop {
+    .nav-burger {
+        background-color: red;
+    }
+}
+@include m.tablet {
 }
 .user {
     cursor: pointer;
@@ -75,7 +158,6 @@
 .show-options {
     opacity: 100%;
 }
-
 .titulo-cabecera {
     position: absolute;
     top: 56%;
@@ -86,9 +168,28 @@
     h1 {
         text-align: left;
         color: v.$blanco;
+        font-size: 2.7rem;
+        text-align: center;
+        @include m.phone {
+            font-size: 3.7rem;
+            text-align: center;
+        }
+        
+        @include m.desktop {
+            text-align: left;
+        }
     }
     p {
         color: v.$blanco;
+        font-size: 1.4rem;
+        text-align: center;
+        @include m.phone {
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        @include m.desktop {
+            text-align: left;
+        }
     }
 }
 .mostrar {

@@ -1,4 +1,5 @@
 @use '../base/variables' as v;
+@use '../base/mixins' as m;
 
 .boton {
     background-color: #323232;
@@ -6,12 +7,18 @@
     padding: 1rem 3rem;
     margin: 1.5rem 0 0;
     border: none;
-    display: inline-block;
+    display: block;
+    width: 100%;
+    text-align: center;
     text-decoration: none;
     transition-property: background-color;
     transition-duration: .3s;
     font-family: v.$fuente_principal;
     cursor: pointer;
+    @include m.phone480 {
+        display: inline-block;
+        width: auto;
+    }
     &:hover {
         background-color: darken($color: #323232, $amount: 100%);
     }
@@ -88,8 +95,13 @@
 }
 .container-divs {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: start;
     margin-top: 3rem;
+    @include m.tablet {
+        flex-direction: row;
+    }
     .div-left {
         flex: 1;
         h4 {
@@ -114,9 +126,6 @@
         background-color: darken($color: v.$gris, $amount: 30);
     }
 } 
-.display-none {
-    display: none;
-}
 .alert {
     text-align: center;
     padding: 0.5rem;
@@ -139,4 +148,7 @@
 }
 .overflow-hidden {
     overflow: hidden;
+}
+.display-none {
+    display: none;
 }

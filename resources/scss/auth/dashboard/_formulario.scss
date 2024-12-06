@@ -1,7 +1,9 @@
 @use '../../base/variables' as v;
+@use '../../base/mixins' as m;
 
 .formulario {
     max-width: 60rem;
+    width: 95%;
     margin: 0 auto;
     border: 1px solid v.$gris;
     background-color: darken($color: v.$azul, $amount: 25);
@@ -11,7 +13,15 @@
     .campo {
         display: flex;
         align-items: center;
+        flex-direction: column;
+        @include m.phone480 {
+            flex-direction: row;
+        }
         input {
+            width: 19rem;
+            @include m.phone {
+                width: auto;
+            }
             flex: 3;
             border: none;
             border-radius: .5rem;
@@ -27,6 +37,10 @@
     input[type="submit"], input[type="button"] {
         display: block;
         margin: 2rem 0 0 auto;
+        width: 100%;
+        @include m.phone480 {
+            width: auto;
+        }
     }
 }
 .error {

@@ -6,7 +6,6 @@ use App\Models\Course;
 use App\Models\Category;
 use App\Repository\Course\CourseRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class IndexController extends Controller
 {

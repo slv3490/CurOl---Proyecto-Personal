@@ -1,8 +1,12 @@
 @use '../../base/variables' as v;
+@use '../../base/mixins' as m;
 
 .dashboard {
     background-color: v.$blanco;
-    padding: 0 4rem 1.5rem;
+    padding: 0 1rem 1.5rem;
+    @include m.tablet {
+        padding: 0 4rem 1.5rem;
+    }
     border: 1px solid v.$gris;
     margin: 3rem auto;
 }
@@ -18,17 +22,32 @@
     inherits: false;
 }
 .seccion-dashboard {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     align-items: center;
-    border-bottom: 1px solid v.$gris;
+    border-bottom: none;
+    @include m.phone {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @include m.tablet {
+        display: flex;
+    }
+    @include m.tablet {
+        border-bottom: 1px solid v.$gris;
+    }
     a {
         padding: 0 2rem;
         color: v.$negro;
         p {
+            text-align: center;
             padding: 1rem;
             margin: 1.5rem 0 0;
             background: linear-gradient(180deg, var(--gradient-end) ,var(--gradient-start) );
             transition: 500ms --gradient-start, 500ms --gradient-end;
+            border-radius: .5rem;
+            @include m.tablet {
+                border-radius: 0;
+            }
             &:hover {
                 --gradient-start: rgb(161,161,161);
                 --gradient-end: rgb(255,255,255);

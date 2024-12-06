@@ -1,7 +1,8 @@
 <div class="create-user">
+    
     <h1 class="mb-3 mt-3">Crear Cuenta</h1>
 
-    <form class="formulario" wire:submit="create">
+    <form id="yourForm" class="formulario" wire:submit="create">
         @csrf
         <div class="campo">
             <label for="nombre">Nombre</label>
@@ -27,12 +28,15 @@
         </div>
         <div class="error">@error('user.password') {{ $message }} @enderror</div>
 
-        <input type="submit" value="Crear Cuenta" class="boton">
-
+        <input type="submit" value="Crear Cuenta" class="boton" wire:loading.attr="disabled">
+        
+        <span wire:loading wire:target="submit">
+            Registrando usuario, por favor espera...
+        </span>
     </form>
 
     <div class="rutas-user">
         <a href="{{ route("iniciar-session") }}">¿Ya tienes una cuenta? Iniciar Sesion.</a>
-        <a class="right" href="{{ route("user.remember") }}">¿Olvidaste tu contraseña? Recuperar Cuenta.</a>
+        <a class="right" href="{{ route("password.request") }}">¿Olvidaste tu contraseña? Recuperar Cuenta.</a>
     </div>
 </div>

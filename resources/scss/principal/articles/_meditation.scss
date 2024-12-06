@@ -1,5 +1,61 @@
 @use '../../base/variables' as v;
+@use '../../base/mixins' as m;
 
+.articulos {
+    margin-bottom: 5rem;
+    h2 {
+        margin: 5rem auto;
+    }
+    .cards {
+        margin-top: 5rem;
+        @include m.phone {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @include m.tablet {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+.cards-articulos {
+    margin: 2rem 2rem;
+    position: relative;
+    overflow: hidden;
+    @include m.tablet {
+        margin: 0 2rem;
+    }
+    .prueba {
+        max-width: 30rem;
+    }
+    img {
+        width: 30rem;
+        transition: .4s;
+    }
+    .titulo-card, .descripcion-card {
+        position: absolute;
+        left: 0;
+        right: 0;
+        color: v.$blanco;
+        z-index: 1;
+    }
+    .titulo-card {
+        top: 10%;
+        font-size: 2.5rem;
+        @include m.desktop {
+            font-size: 3rem;
+        }
+    }
+    .descripcion-card {
+        bottom: 10%;
+        font-size: 1.5rem;
+        padding: 0 1rem;
+        @include m.desktop {
+            font-size: 2rem;
+        }
+    }
+}
 .article {
     p, li {
         font-size: 2.5rem;

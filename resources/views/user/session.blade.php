@@ -1,5 +1,5 @@
 @extends('layouts.base')
 
 @section('content')
-    <livewire:login />
+    <livewire:log-in />
 @endsection
