@@ -10,19 +10,17 @@
     <!-- Facebook Meta Tags -->
     <meta name="og:title" content="CurOl Pagina de Cursos Online">
     <meta name="og:description" content="Plataforma de Cursos Online. Descubre una amplia variedad de cursos para mejorar tus habilidades y aprender algo nuevo desde cualquier lugar.">
-    <meta property="og:url" content="https://zilziye.nyc.dom.my.id/">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://i.postimg.cc/MGjd59hx/Curol-cursos-online.webp">
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta property="twitter:domain" content="zilziye.nyc.dom.my.id">
-    <meta property="twitter:url" content="https://zilziye.nyc.dom.my.id/">
-    <meta name="twitter:title" content="Portafolio Leonel Enrique Silvera">
+    <meta name="twitter:title" content="CurOl Pagina de Cursos Online">
     <meta name="twitter:description" content="Plataforma de Cursos Online. Descubre una amplia variedad de cursos para mejorar tus habilidades y aprender algo nuevo desde cualquier lugar.">
     <meta name="twitter:image" content="https://i.postimg.cc/MGjd59hx/Curol-cursos-online.webp">
 
-    <link rel="cannonical" href="https://zilziye.nyc.dom.my.id/">
+    <link rel="cannonical" href="https://zilziye.nyc.dom.my.id">
     <link rel="icon" type="image/x-icon" href="{{ Vite::asset('resources/img/curol.ico') }}">
 
     <title>@yield('title', "CurOl")</title>
