@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use App\Models\Category;
+use App\Repository\Course\CourseRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class IndexController extends Controller
 {
+    public function __construct(private CourseRepositoryInterface $repository)
+    {
+        
+    }
+
     public function index()
     {
         $courses = Course::limit(9)->get();
@@ -23,16 +29,7 @@ class IndexController extends Controller
     {
         $categories = Category::all();
 
-        $courses = Course::with("categories")
-        ->when($request->category, function ($query, $categoryIds) {
-            $query->whereHas('categories', function ($query) use ($categoryIds) {
-                $query->where('category_id', $categoryIds);
-            });
-        })
-        ->when($request->search, function($query, $search) {
-            $query->where("title", "LIKE", "%".$search."%");
-        })
-        ->paginate(10);
+        $courses = $this->repository->courseSearchAndFilter($request);
 
         return view("cursos", [
             "courses" => $courses,
