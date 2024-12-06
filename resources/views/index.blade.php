@@ -12,7 +12,7 @@
 
                 <div class="contenedor-art-cursos">
                     <article>
-                        <a class="articulo-curso" href="{{ route('payment.create', 10) }}">
+                        <a class="articulo-curso" href="{{ route('cursos', "search=curso+sobre+cocina") }}">
                             <img src="{{ Vite::asset("resources/img/curso-cocina.jpg") }}" alt=" curso de finanzas">
                             <div>
                                 <h3>Cursos Sobre Cocina</h3>
@@ -22,7 +22,7 @@
                     </article>
 
                     <article >
-                        <a class="articulo-curso" href="">
+                        <a class="articulo-curso" href="{{ route('cursos', "search=curso+de+ingles") }}">
                             <img src="{{ Vite::asset("resources/img/curso-idiomas.jpg") }}" alt=" curso de finanzas">
                             <div>
                                 <h3>Curso de Inglés	(Principiante a Avanzado)</h3>
@@ -32,7 +32,7 @@
                     </article>
 
                     <article>
-                        <a class="articulo-curso" href="">
+                        <a class="articulo-curso" href="{{ route('cursos', "search=curso+sobre+finanzas") }}">
                             <img src="{{ Vite::asset("resources/img/curso-finanzas.jpg") }}" alt=" curso de finanzas">
                             <div>
                                 <h3>Cursos Sobre Finanzas</h3>
