@@ -4,30 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Lesson;
 use Illuminate\Http\Request;
-use App\Models\CategoryLesson;
 use App\Http\Requests\LessonRequest;
 use App\Models\Course;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rules\File;
 
-// use App\Observers\LessonObserver;
-// use Illuminate\Database\Eloquent\Attributes\ObservedBy;
-
-// #[ObservedBy([LessonObserver::class])]
 class LessonController extends Controller
 {
-    public function index()
-    {
-        // $userId = Auth::user()->id;
-        // $lessons = Lesson::where("course_id", $userId)->orderBy("id", "desc")->get();
-
-        // return view("user.dashboard.lessons.index", [
-        //     "title" => "Lecciones",
-        //     "lessons" => $lessons
-        // ]);
-    }
-
     public function lesson($url) {
         $course = Course::where("url", $url)->get();
         $lessons = Lesson::where("course_id", $course[0]->id)->get();
