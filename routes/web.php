@@ -53,9 +53,9 @@ Route::middleware('auth')->group(function () {
     
     Route::get("/dashboard/courses/create-courses", [CourseController::class, "createCourses"])->middleware("user.has.any.permission:read lessons,spectator")->name("create-courses");
     Route::post("/dashboard/courses/create-courses", [CourseController::class, "storeCourses"])->middleware("user.has.any.permission:create lessons")->name("store-courses");
-    Route::get("/dashboard/courses/update-courses/{id}", [CourseController::class, "showCourses"])->middleware("user.has.any.permission:read lessons,spectator")->name("show-courses");
-    Route::put("/dashboard/courses/update-courses/{id}", [CourseController::class, "updateCourses"])->middleware("user.has.any.permission:update lessons")->name("update-courses");
-    Route::delete("/dashboard/courses/delete-courses/{id}", [CourseController::class, "deleteCourses"])->middleware("user.has.any.permission:delete lessons")->name("delete-courses");
+    Route::get("/dashboard/courses/update-courses/{course}", [CourseController::class, "showCourses"])->middleware("user.has.any.permission:read lessons,spectator")->name("show-courses");
+    Route::put("/dashboard/courses/update-courses/{course}", [CourseController::class, "updateCourses"])->middleware("user.has.any.permission:update lessons")->name("update-courses");
+    Route::delete("/dashboard/courses/delete-courses/{course}", [CourseController::class, "deleteCourses"])->middleware("user.has.any.permission:delete lessons")->name("delete-courses");
     //Lessons
     Route::get("/dashboard/lessons", [LessonController::class, "index"])->name("lessons.index"); //NO TIENE NADA
     Route::get("/dashboard/courses/{courseUrl}/overview", [LessonController::class, "lesson"])->middleware("user.has.any.permission:read lessons,spectator")->name("lesson.lesson");
