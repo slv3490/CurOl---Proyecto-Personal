@@ -113,7 +113,7 @@ class EloquentCourseRepository implements CourseRepositoryInterface {
         return $imageName;
     }
 
-    private function attachCategoriesToCourse($request, $course) 
+    private function attachCategoriesToCourse(Request $request, $course) 
     {
         $rtrimIdCategory = rtrim($request->category_id, ",");
         $idCategory = explode(",", $rtrimIdCategory);
