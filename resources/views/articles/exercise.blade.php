@@ -8,7 +8,7 @@
             <div class="div-description-title">
                 <p>El ejercicio físico es una de las actividades más beneficiosas para la salud humana. A pesar de que todos hemos escuchado sobre la importancia de mantenernos activos, muchas personas subestiman el impacto profundo que puede tener el ejercicio en nuestra vida diaria, tanto a nivel físico como mental. Incorporar actividad física en la rutina diaria no solo mejora la calidad de vida, sino que también previene enfermedades, fortalece el cuerpo y eleva el bienestar emocional.</p>
                 <div class="image-responsive">
-                    <img title="Gente andando en bicicleta en un bosque" src="{{ Vite::asset('resources/img/articles/montain-bike.jpg') }}" alt="Imagen de gente andando en bicicleta en un bosque">
+                    <img title="Gente andando en bicicleta en un bosque" src="{{ Vite::asset('resources/img/montain-bike.jpg') }}" alt="Imagen de gente andando en bicicleta en un bosque">
                 </div>
             </div>
         </div>
@@ -46,7 +46,7 @@
                 <h2 class="text-left">Ejercicio y Longevidad</h2>
                 <p>Numerosos estudios han demostrado que las personas activas tienden a vivir más tiempo y con una mejor calidad de vida. El ejercicio regular no solo prolonga la vida al reducir el riesgo de enfermedades crónicas, sino que también mejora la independencia y la funcionalidad en la vejez.</p>
             </div>
-            <img src="{{ Vite::asset('resources/img/articles/woman-exercise.jpg') }}" alt="Imagen de una mujer haciendo curl de biceps" title="Mujer haciendo un curl de biceps">
+            <img src="{{ Vite::asset('resources/img/woman-exercise.jpg') }}" alt="Imagen de una mujer haciendo curl de biceps" title="Mujer haciendo un curl de biceps">
         </div>
 
         <div>

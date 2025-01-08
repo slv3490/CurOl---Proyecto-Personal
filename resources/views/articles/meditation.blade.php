@@ -8,7 +8,7 @@
             <div class="div-description-title">
                 <p>En un mundo donde las distracciones y el estrés parecen omnipresentes, la meditación ha emergido como una práctica invaluable para encontrar equilibrio, claridad y paz interior. Aunque tiene raíces que se remontan a miles de años en tradiciones espirituales y filosóficas, la meditación ha ganado popularidad en la sociedad moderna como una herramienta eficaz para mejorar la salud mental, emocional y física.</p>
                 <div class="image-responsive">
-                    <img title="Imagen de Piedras Equilibradas" class="" src="{{ Vite::asset('resources/img/articles/balanced-stones.jpg') }}" alt="Imagen de Piedras Equilibradas">
+                    <img title="Imagen de Piedras Equilibradas" class="" src="{{ Vite::asset('resources/img/balanced-stones.jpg') }}" alt="Imagen de Piedras Equilibradas">
                 </div>
             </div>
         </div>
@@ -18,7 +18,7 @@
                 <h2 class="text-left">¿Qué es la Meditación?</h2>
                 <p>La meditación es una práctica mental que implica entrenar la atención y la conciencia para lograr un estado de calma y concentración. Existen muchas formas de meditación, pero la mayoría comparten el objetivo de silenciar el ruido mental y dirigir la mente hacia el momento presente. Algunas técnicas se centran en la respiración, otras en un mantra o en la observación de los pensamientos y las emociones sin juzgarlos.</p>
             </div>
-            <img title="Imagen de Hombre Meditando en el Atardecer" src="{{ Vite::asset('resources/img/articles/man-meditating.jpg') }}" alt="Hombre meditando en el atardecer">
+            <img title="Imagen de Hombre Meditando en el Atardecer" src="{{ Vite::asset('resources/img/man-meditating.jpg') }}" alt="Hombre meditando en el atardecer">
         </div>
 
         <div>

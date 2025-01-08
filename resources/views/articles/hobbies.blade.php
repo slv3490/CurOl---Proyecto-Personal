@@ -8,7 +8,7 @@
             <div class="div-description-title">
                 <p>En un mundo cada vez más acelerado, encontrar tiempo para uno mismo puede parecer un lujo. Entre el trabajo, los estudios y las responsabilidades diarias, muchas personas descuidan una parte esencial de su bienestar: los hobbies. Estas actividades, que realizamos por placer y sin una obligación externa, son mucho más que simples pasatiempos; son una fuente de bienestar físico, mental y emocional.</p>
                 <div class="image-responsive">
-                    <img src="{{ Vite::asset('resources/img/articles/escalation.jpg') }}" alt="Imagen de dos hombres escalando una montaña" title="Imagen de dos hombres escalando una montaña">
+                    <img src="{{ Vite::asset('resources/img/escalation.jpg') }}" alt="Imagen de dos hombres escalando una montaña" title="Imagen de dos hombres escalando una montaña">
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
                 <h2 class="text-left">¿Qué es un hobby?</h2>
                 <p>Un hobby es una actividad que se realiza en el tiempo libre y que proporciona satisfacción personal. Puede ser cualquier cosa que te apasione: desde leer, dibujar, cocinar, hacer ejercicio, hasta actividades más complejas como la jardinería, la programación o la fotografía. Lo que define a un hobby es la motivación interna que impulsa a la persona a dedicarle tiempo y esfuerzo, simplemente porque le gusta.</p>
             </div>
-            <img src="{{ Vite::asset('resources/img/articles/playing-videogames.jpg') }}" alt="Imagen persona jugando football con un mando de playstation 5" title="Persona jugando football con un mando de playstation 5">
+            <img src="{{ Vite::asset('resources/img/playing-videogames.jpg') }}" alt="Imagen persona jugando football con un mando de playstation 5" title="Persona jugando football con un mando de playstation 5">
         </div>
         <div>
             <h2 class="text-left">Beneficios de tener hobbies</h2>
