@@ -2,20 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Course;
 use App\Models\Lesson;
+use App\Models\Category;
+use Illuminate\Http\Request;
 use App\Http\Requests\CourseRequest;
-use App\Repository\Course\CourseRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
+use App\Repository\Course\CourseRepositoryInterface;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 
 class CourseController extends Controller
 {
-    public function __construct(private CourseRepositoryInterface $repository)
+    public function __construct(private CourseRepositoryInterface $repository) {}
+    
+    public function cursos(Request $request): View
     {
+        $categories = Category::all();
+
+        $courses = $this->repository->courseSearchAndFilter($request);
+
+        return view("cursos", [
+            "courses" => $courses,
+            "categories" => $categories,
+        ]);
     }
 
-    public function index() {
+    public function index(): View {
         $user = Auth::user();
         $courses = $this->repository->courseWhere("user_id", $user->id, 10);
 
@@ -25,58 +38,53 @@ class CourseController extends Controller
         ]);
     }
 
-    public function createCourses() {
+    public function createCourses(): View {
         return view("user.dashboard.courses.create-courses", [
             "title" => "Courses"
         ]);
     }
 
-    public function storeCourses(CourseRequest $request) {
+    public function storeCourses(CourseRequest $request): RedirectResponse {
         //Save the image and create the course
         $course = $this->repository->createCourse($request);
 
         if($course) {
             return redirect()->route("course.index");
         }
+
+        return redirect()->back()->withInput()->withErrors("Failed to create the course.");
     }
 
-    public function showCourses(Course $course) {
+    public function showCourses(Course $course): View {
         return view("user.dashboard.courses.update-courses", [
             "course" => $course,
             "title" => "Course"
         ]);
     }
 
-    public function updateCourses(CourseRequest $request, Course $course) {
+    public function updateCourses(CourseRequest $request, Course $course): RedirectResponse {
         if($course) {
             //Update the image and the course
             $this->repository->updateCourse($request, $course);
 
             return redirect()->route("course.index");
         }
+        return redirect()->back()->withInput()->withErrors("Failed to update the course.");
     }
 
-    public function deleteCourses(Course $course) {
+    //TODO: it is necessary to do the in case of error
+    public function deleteCourses(Course $course): RedirectResponse {
         
         $this->repository->deleteCourse($course);
 
         return redirect()->route("course.index");
     }
 
-    // public function course($url, $id) {
-    //     $course = $this->repository->findSpecifiedCourse("url", $url, $id);
-    //     // $course = Course::find($id)->where("url", $url)->get();
-    //     $lessons = Lesson::where("course_id", $course[0]->id)->get();
+    public function watchCourse($courseUrl, $lesson): View {
 
-    //     return view("user.dashboard.courses.show-course", [
-    //         "title" => "Courses",
-    //         "lessons" => $lessons,
-    //         "course" => $course[0]
-    //     ]);
-    // }
-    public function watchCourse($courseUrl, $lesson) {
         $course = $this->repository->courseWhere("url", $courseUrl, null);
         $lessonVideo = Lesson::find($lesson);
+
         return view("user.overview-courses", [
             "course" => $course[0],
             "lessonVideo" => $lessonVideo
