@@ -76,7 +76,7 @@ class EloquentCourseRepository implements CourseRepositoryInterface {
 
     public function createCourse(CourseRequest $request): Course
     {
-        //Guardar Imagen
+        //Save Image
         $imageName = $this->createImage($request);
         $url = md5(uniqid(rand(), true));
 
@@ -102,7 +102,7 @@ class EloquentCourseRepository implements CourseRepositoryInterface {
         }
     }
 
-    private function updateImage($request, Course $course): string
+    private function updateImage(CourseRequest $request, Course $course): string
     {
         if($request->image_uri) {
             //Eliminar la imagen previa si existe
