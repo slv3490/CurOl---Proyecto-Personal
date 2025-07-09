@@ -6,20 +6,24 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Models\CategoryCourse;
 use App\Http\Requests\CourseRequest;
+use Error;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
 
 class EloquentCourseRepository implements CourseRepositoryInterface {
-    protected $model;
+
+    protected Course $model;
 
     public function __construct()
     {
         $this->model = new Course();
     }
 
-    public function courseSearchAndFilter(Request $request) 
+    public function courseSearchAndFilter(Request $request): LengthAwarePaginator
     {
         $course = $this->model::with("categories")
         ->when($request->category, function ($query, $categoryIds) {
@@ -35,7 +39,7 @@ class EloquentCourseRepository implements CourseRepositoryInterface {
         return $course;
     }
 
-    public function courseWhere($condition1, $condition2, $perPage = null) 
+    public function courseWhere(string $condition1, string|int $condition2, ?int $perPage = null): Collection|LengthAwarePaginator
     {
         $query = $this->model->query()->where($condition1, $condition2);
         if($perPage === null) {
@@ -47,13 +51,13 @@ class EloquentCourseRepository implements CourseRepositoryInterface {
         return $query;
     }
 
-    private function saveImage($request) 
+    private function saveImage(CourseRequest $request): string
     {
-        //Generacion del nombre de la imagen
+        //Generate the image name
         $extension = $request->image_uri->getClientOriginalExtension();
         $imageName = md5(uniqid(rand(), true)).".". $extension;
 
-        //Leer y guardar la imagen en el archiuvo
+        //Read and save the image in the file
         $manager = new ImageManager(Driver::class);
         $image = $manager->read($request->image_uri->getRealPath());
         $image->cover(306, 204);
@@ -62,15 +66,15 @@ class EloquentCourseRepository implements CourseRepositoryInterface {
         return $imageName;
     }
 
-    private function createImage($request) 
+    private function createImage(CourseRequest $request): string|null
     {
         if($request->image_uri) {
             $imageName = $this->saveImage($request);
-            return $imageName;
         }
+        return $imageName ?? null;
     }
 
-    public function createCourse(CourseRequest $request)
+    public function createCourse(CourseRequest $request): Course
     {
         //Guardar Imagen
         $imageName = $this->createImage($request);
@@ -89,17 +93,16 @@ class EloquentCourseRepository implements CourseRepositoryInterface {
         $course->categories()->attach($idCategory);
 
         return $course;
-
     }
 
-    private function verifiedIfThePreviousImageExists(Course $course) 
+    private function verifiedIfThePreviousImageExists(Course $course): void
     {
         if(Storage::disk('public')->exists("images/".$course->image_uri)) {
             Storage::disk('public')->delete("images/".$course->image_uri);
         }
     }
 
-    private function updateImage($request, Course $course) 
+    private function updateImage($request, Course $course): string
     {
         if($request->image_uri) {
             //Eliminar la imagen previa si existe
@@ -113,11 +116,13 @@ class EloquentCourseRepository implements CourseRepositoryInterface {
         return $imageName;
     }
 
-    private function attachCategoriesToCourse(Request $request, $course) 
+    private function attachCategoriesToCourse(CourseRequest $request, Course $course): void
     {
         $rtrimIdCategory = rtrim($request->category_id, ",");
         $idCategory = explode(",", $rtrimIdCategory);
+
         CategoryCourse::where('course_id', $course->id)->delete();
+
         foreach ($idCategory as $key => $value) {
             CategoryCourse::create([
                 "category_id" => $value,
@@ -126,7 +131,7 @@ class EloquentCourseRepository implements CourseRepositoryInterface {
         }
     }
 
-    public function updateCourse(CourseRequest $request, $course) 
+    public function updateCourse(CourseRequest $request, $course): void
     {
         $imageName = $this->updateImage($request, $course);
 
@@ -139,16 +144,10 @@ class EloquentCourseRepository implements CourseRepositoryInterface {
         $this->attachCategoriesToCourse($request, $course);
     }
 
-    public function deleteCourse(Course $course)
+    public function deleteCourse(Course $course): void
     {
         $this->verifiedIfThePreviousImageExists($course);
         $course->categories()->detach();
         $course->delete();
-    }
-
-    public function findSpecifiedCourse($condition1, $condition2, $id)
-    {
-        $course = Course::find($id)->where($condition1, $condition2)->get();
-        return $course;
     }
 }
