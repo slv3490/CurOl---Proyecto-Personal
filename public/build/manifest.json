@@ -1,0 +1,99 @@
+{
+  "resources/img/balanced-stones.jpg": {
+    "file": "assets/balanced-stones-XGJgrmvR.jpg",
+    "src": "resources/img/balanced-stones.jpg"
+  },
+  "resources/img/ban.jpg": {
+    "file": "assets/ban-eC54FmX7.jpg",
+    "src": "resources/img/ban.jpg"
+  },
+  "resources/img/ban.webp": {
+    "file": "assets/ban-vvuD7xx9.webp",
+    "src": "resources/img/ban.webp"
+  },
+  "resources/img/burger.svg": {
+    "file": "assets/burger-t7chbRgF.svg",
+    "src": "resources/img/burger.svg"
+  },
+  "resources/img/computerEmail.svg": {
+    "file": "assets/computerEmail-pKh-sNmw.svg",
+    "src": "resources/img/computerEmail.svg"
+  },
+  "resources/img/corredor.jpg": {
+    "file": "assets/corredor-s_YpYoWS.jpg",
+    "src": "resources/img/corredor.jpg"
+  },
+  "resources/img/curol.ico": {
+    "file": "assets/curol-wqv7U7M_.ico",
+    "src": "resources/img/curol.ico"
+  },
+  "resources/img/curso-cocina.jpg": {
+    "file": "assets/curso-cocina-TyYAczjh.jpg",
+    "src": "resources/img/curso-cocina.jpg"
+  },
+  "resources/img/curso-finanzas.jpg": {
+    "file": "assets/curso-finanzas-1Lu2woYh.jpg",
+    "src": "resources/img/curso-finanzas.jpg"
+  },
+  "resources/img/curso-idiomas.jpg": {
+    "file": "assets/curso-idiomas-apkP36wz.jpg",
+    "src": "resources/img/curso-idiomas.jpg"
+  },
+  "resources/img/descanso.jpg": {
+    "file": "assets/descanso-Y646_2jN.jpg",
+    "src": "resources/img/descanso.jpg"
+  },
+  "resources/img/ejercicio.jpg": {
+    "file": "assets/ejercicio-T1GJMS8B.jpg",
+    "src": "resources/img/ejercicio.jpg"
+  },
+  "resources/img/escalation.jpg": {
+    "file": "assets/escalation-wWpla9ol.jpg",
+    "src": "resources/img/escalation.jpg"
+  },
+  "resources/img/estudio.jpg": {
+    "file": "assets/estudio-Lvo41Pmm.jpg",
+    "src": "resources/img/estudio.jpg"
+  },
+  "resources/img/hobbies.jpg": {
+    "file": "assets/hobbies-P63O2915.jpg",
+    "src": "resources/img/hobbies.jpg"
+  },
+  "resources/img/man-meditating.jpg": {
+    "file": "assets/man-meditating-e4ig-DpR.jpg",
+    "src": "resources/img/man-meditating.jpg"
+  },
+  "resources/img/meditacion.jpg": {
+    "file": "assets/meditacion-9tehjt_B.jpg",
+    "src": "resources/img/meditacion.jpg"
+  },
+  "resources/img/montain-bike.jpg": {
+    "file": "assets/montain-bike-zUH9bnCm.jpg",
+    "src": "resources/img/montain-bike.jpg"
+  },
+  "resources/img/playing-videogames.jpg": {
+    "file": "assets/playing-videogames-cv-vPq3G.jpg",
+    "src": "resources/img/playing-videogames.jpg"
+  },
+  "resources/img/search-icon.svg": {
+    "file": "assets/search-icon-8PPJHBBJ.svg",
+    "src": "resources/img/search-icon.svg"
+  },
+  "resources/img/woman-exercise.jpg": {
+    "file": "assets/woman-exercise--_-5yBIn.jpg",
+    "src": "resources/img/woman-exercise.jpg"
+  },
+  "resources/js/app.js": {
+    "css": [
+      "assets/app-B3VhY18K.css"
+    ],
+    "file": "assets/app-36inFv5t.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/scss/app.scss": {
+    "file": "assets/app-YPKQvaWq.css",
+    "isEntry": true,
+    "src": "resources/scss/app.scss"
+  }
+}
