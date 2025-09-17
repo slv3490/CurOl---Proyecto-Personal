@@ -19,7 +19,7 @@ interface CourseRepositoryInterface {
     public function courseSearchAndFilter(Request $request): LengthAwarePaginator;
 
     /**
-     * Gets a list of courses filtered by a specific condition.
+     * Get a list of courses filtered by a specific condition and pagination if necessary.
      *
      * @param string $condition1 The name of the column to apply the filter to.
      * @param string|int $condition2 The value to compare in the condition.
@@ -28,7 +28,7 @@ interface CourseRepositoryInterface {
      * @return LengthAwarePaginator A complete collection of results or a pagination, depending on the value of $perPage.
      */
 
-    public function courseWhere(string $condition1, string|int $condition2, ?int $perPage): Collection|LengthAwarePaginator;
+    public function whereWithPerPage(string $condition1, string|int $condition2, ?int $perPage = null): Collection|LengthAwarePaginator;
 
     /**
      * It is responsible for creating a course and adding the corresponding categories to the course.
@@ -67,4 +67,13 @@ interface CourseRepositoryInterface {
 
     public function deleteCourse(Course $course): void;
 
+    /**
+     * Find a course by its ID and return the first one it finds
+     * 
+     * @param string $url The url for find the course
+     * @return Course 
+     */
+    public function findByUrl(string $url): Course;
+
+    public function find(int $id): Course;
 }

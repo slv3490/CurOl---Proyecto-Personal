@@ -30,7 +30,7 @@ class CourseController extends Controller
 
     public function index(): View {
         $user = Auth::user();
-        $courses = $this->repository->courseWhere("user_id", $user->id, 10);
+        $courses = $this->repository->whereWithPerPage("user_id", $user->id, 10);
 
         return view("user.dashboard.courses.index", [
             "title" => "Courses",
@@ -82,7 +82,7 @@ class CourseController extends Controller
 
     public function watchCourse($courseUrl, $lesson): View {
 
-        $course = $this->repository->courseWhere("url", $courseUrl, null);
+        $course = $this->repository->whereWithPerPage("url", $courseUrl);
         $lessonVideo = Lesson::find($lesson);
 
         return view("user.overview-courses", [

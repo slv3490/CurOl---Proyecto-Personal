@@ -6,7 +6,7 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use App\Models\CategoryCourse;
 use App\Http\Requests\CourseRequest;
-use Error;
+use App\Repository\BaseRepository\BaseRepository;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
@@ -14,13 +14,12 @@ use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
 
-class EloquentCourseRepository implements CourseRepositoryInterface {
+class EloquentCourseRepository extends BaseRepository implements CourseRepositoryInterface {
 
-    protected Course $model;
-
-    public function __construct()
+    //Prueba de como trabajar con repositorios bases para reutilizacion como por ejemplo en un crud
+    public function __construct(Course $model)
     {
-        $this->model = new Course();
+        parent::__construct($model);
     }
 
     public function courseSearchAndFilter(Request $request): LengthAwarePaginator
@@ -37,19 +36,7 @@ class EloquentCourseRepository implements CourseRepositoryInterface {
         ->paginate(10);
 
         return $course;
-    }
-
-    public function courseWhere(string $condition1, string|int $condition2, ?int $perPage = null): Collection|LengthAwarePaginator
-    {
-        $query = $this->model->query()->where($condition1, $condition2);
-        if($perPage === null) {
-            $query = $query->get();
-        } else {
-            $query = $query->paginate($perPage);
-        }
-
-        return $query;
-    }
+    }   
 
     private function saveImage(CourseRequest $request): string
     {
@@ -94,7 +81,8 @@ class EloquentCourseRepository implements CourseRepositoryInterface {
 
         return $course;
     }
-
+    
+    //TODO: it is necessary to do the in case of error
     private function verifiedIfThePreviousImageExists(Course $course): void
     {
         if(Storage::disk('public')->exists("images/".$course->image_uri)) {
@@ -143,11 +131,16 @@ class EloquentCourseRepository implements CourseRepositoryInterface {
 
         $this->attachCategoriesToCourse($request, $course);
     }
-
+    
+    //TODO: it is necessary to do the in case of error
     public function deleteCourse(Course $course): void
     {
         $this->verifiedIfThePreviousImageExists($course);
         $course->categories()->detach();
         $course->delete();
+    }
+
+    public function findByUrl(string $url): Course {
+        return Course::where("url", $url)->first();
     }
 }
