@@ -8,12 +8,5 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    build: {
-        rollupOptions: {
-            output: {
-                manualChunks: undefined,
-            },
-        },
-    },
-    base: process.env.NODE_ENV === 'production' ? process.env.APP_URL + '/' : '/',
+    base: '/',
 });
