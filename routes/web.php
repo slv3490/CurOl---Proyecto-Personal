@@ -96,5 +96,5 @@ Route::middleware(['auth', "verified"])->group(function () {
     Route::post("/dashboard/create-categories", [CategoryController::class, "storeCategories"])->middleware("user.has.any.permission:create categories")->name("store-categories");
 
     //Logout
-    Route::get("/logout", [UserController::class, "logout"])->name("logout");
 });
+Route::get("/logout", [UserController::class, "logout"])->name("logout")->middleware("auth");
