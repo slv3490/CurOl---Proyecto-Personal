@@ -1,7 +1,7 @@
 <div class="edit-profile">
     <h1 class="mb-3 mt-3">Editar Perfil</h1>
 
-    <form class="formulario" wire:submit={{ Auth::user()->hasPermissionTo('spectator') ? 'userNotAuthorized' : 'updateUserAccount' }} method="POST">
+    <form class="formulario" wire:submit={{ Auth::user()->hasPermissionTo('spectator') ? 'updateUserAccount' : 'userNotAuthorized' }} method="POST">
         @csrf
         @method("PUT")
         <div class="campo">
