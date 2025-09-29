@@ -13,7 +13,8 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.4",
         "spatie/laravel-permission": "^6.7",
-        "srmklive/paypal": "~3.0"
+        "srmklive/paypal": "~3.0",
+        "ext-gd": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
