@@ -48,4 +48,9 @@ class EloquentLessonRepository extends BaseRepository implements LessonRepositor
 
         return $lesson;
     }
+
+    public function find(int $id): Lesson
+    {
+        return Lesson::findOrFail($id);
+    }
 }
