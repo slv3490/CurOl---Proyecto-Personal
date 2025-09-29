@@ -48,7 +48,14 @@ class EloquentCourseRepository extends BaseRepository implements CourseRepositor
         $manager = new ImageManager(Driver::class);
         $image = $manager->read($request->image_uri->getRealPath());
         $image->cover(306, 204);
-        $image->save(storage_path("app/public/images/". $imageName));
+        
+        //Create the folder if dont exists
+        $path = storage_path("app/public/images");
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true); // crea la carpeta con permisos recursivos
+        }
+
+        $image->save($path . "/" . $imageName);
 
         return $imageName;
     }
