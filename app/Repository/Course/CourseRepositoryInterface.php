@@ -6,6 +6,7 @@ use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Http\Requests\CourseRequest;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface CourseRepositoryInterface {
@@ -75,5 +76,5 @@ interface CourseRepositoryInterface {
      */
     public function findByUrl(string $url): Course;
 
-    public function find(int $id): Course;
+    public function find(int $id): Model;
 }
