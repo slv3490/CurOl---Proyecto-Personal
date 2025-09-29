@@ -9,12 +9,11 @@ use Illuminate\Database\Eloquent\Collection;
 use App\Repository\BaseRepository\BaseRepository;
 
 class EloquentLessonRepository extends BaseRepository implements LessonRepositoryInterface {
-    protected Lesson $model;
 
-    public function __construct()
+    public function __construct(Lesson $lesson)
     {
-        $this->model = new Lesson();
-    }   
+        parent::__construct($lesson);
+    }
 
     public function getByCourseId(int $id): Collection {
         return Lesson::where("course_id", $id)->get();

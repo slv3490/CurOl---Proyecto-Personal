@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class BaseRepository {
-    protected $model;
+    protected Model $model;
     //Prueba de como trabajar con repositorios bases para reutilizacion como por ejemplo en un crud
     public function __construct(Model $model)
     {
