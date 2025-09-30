@@ -68,6 +68,11 @@ class UserController extends Controller
     public function userProfile() {
         return view("user.profile.profile");
     }
+
+    public function updateUserInfoAccount(Request $request) {
+        dd($request);
+    }
+
     public function deleteUserAccount($id) {
         $user = User::find($id);
         $user->delete();

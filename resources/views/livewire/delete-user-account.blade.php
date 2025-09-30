@@ -6,7 +6,7 @@
         @method("DELETE")
         <div class="confirm-delete-user">
             <p>¿Estas seguro que deseas eliminar tu cuenta? Estos cambios no son reversibles.</p>
-            <input type="submit" value="Eliminar Cuenta" class="boton">
+            <input type={{ Auth::user()->hasPermissionTo('spectator') ? 'button' : 'submit' }} value="Eliminar Cuenta" class="boton {{ Auth::user()->hasPermissionTo('spectator') ? 'not-allowed' : 'allowed' }}">
         </div>
     </form>
 </div>

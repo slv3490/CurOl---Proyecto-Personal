@@ -74,6 +74,6 @@
         </div>
         <div class="error">@error('user.password') {{ $message }} @enderror</div>
 
-        <input type={{ Auth::user()->hasPermissionTo('spectator') ? 'button' : 'submit' }} value="Actualizar Cuenta" class="boton">
+        <input type={{ Auth::user()->hasPermissionTo('spectator') ? 'button' : 'submit' }} value="Actualizar Cuenta" class="boton {{ Auth::user()->hasPermissionTo('spectator') ? 'not-allowed' : 'allowed' }}">
     </form>
 </div>

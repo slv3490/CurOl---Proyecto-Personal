@@ -49,7 +49,7 @@ Route::middleware(['auth', "verified"])->group(function () {
 
     //User Profile
     Route::get("/user/profile", [UserController::class, "userProfile"])->name("user.profile");
-    Route::put("/user/profile", [UserController::class])->name("update.user.profile");
+    Route::put("/user/profile", [UserController::class, "updateUserInfoAccount"])->name("update.user.profile");
     Route::delete("/user/profile/delete-account/{id}", [UserController::class, "deleteUserAccount"])->middleware("user.has.not.permission:spectator")->name("delete.user.account");
 
     //Show

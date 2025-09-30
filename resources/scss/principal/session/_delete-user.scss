@@ -10,12 +10,16 @@
             background-color: darken($color: v.$rojo, $amount: 5);
         }
     }
+    .formulario input[type="button"] {
+        cursor: not-allowed;
+    }
     p {
         color: v.$blanco;
     }
     .confirm-delete-user {
         display: flex;
         flex-direction: column;
+        gap: 20px;
         @include m.tablet {
             flex-direction: row;
         }
