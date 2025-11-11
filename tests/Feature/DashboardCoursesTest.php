@@ -59,6 +59,7 @@ class DashboardCoursesTest extends TestCase
         $filePath = $file->store('images', "public");
         $user = User::factory()->create();
         $user->givePermissionTo("create lessons");
+        $user->givePermissionTo("read lessons");
 
         $response = $this->actingAs($user)->post(route("store-courses"), [
             "title" => "Course about food",

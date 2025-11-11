@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Category;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Course;
@@ -94,6 +95,22 @@ class CoursesTest extends TestCase
     public function test_can_filter_by_categories_checkbox() :void
     {
         //Ensure that the category exists in the test database
+
+        //NO HACER ESTO
+        if(Category::find(7) && Category::find(8)) {
+            Category::find(7)->delete();
+            Category::find(8)->delete();
+        }
+        ///////////////
+        Category::create([
+            "id" => 7,
+            "name" => "rights"
+        ]);
+        Category::create([
+            "id" => 8,
+            "name" => "rights"
+        ]);
+
         $response = $this->get("/cursos?category%5B%5D=7&category%5B%5D=8");
 
         $response->assertViewIs("cursos");

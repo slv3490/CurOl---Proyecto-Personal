@@ -26,7 +26,12 @@ class LoginTest extends TestCase
     {
         //Asegurarse que este usuario existe
         $user = User::where('email', 'admin@admin.com')->first();
-
+        if(!$user) {
+            User::create([
+                "email" => "admin@admin.com",
+                "password" => "12345"
+            ]);
+        }
         Livewire::test(LogIn::class)
             ->set('session.email', $user->email)
             ->set('session.password', "123123")
