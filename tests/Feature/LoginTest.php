@@ -24,16 +24,13 @@ class LoginTest extends TestCase
 
     public function test_to_log_in(): void
     {
-        //Asegurarse que este usuario existe
-        $user = User::where('email', 'admin@admin.com')->first();
-        if(!$user) {
-            User::create([
-                "name" => "admin",
-                "last_name" => "admin",
-                "email" => "admin@admin.com",
-                "password" => "123123"
-            ]);
-        }
+        $user = User::create([
+            "name" => "Usuario",
+            "last_name" => "Test",
+            "email" => "usertest@gmail.com",
+            "password" => "123123"
+        ]);
+
         Livewire::test(LogIn::class)
             ->set('session.email', $user->email)
             ->set('session.password', "123123")
@@ -42,6 +39,8 @@ class LoginTest extends TestCase
 
         // Verificar que el usuario esté autenticado
         $this->assertAuthenticatedAs($user);
+
+        $user->delete();
     }
 
     public function test_incorrect_log_in(): void 
