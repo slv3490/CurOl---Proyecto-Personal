@@ -29,6 +29,7 @@ class LoginTest extends TestCase
         if(!$user) {
             User::create([
                 "name" => "admin",
+                "last_name" => "admin",
                 "email" => "admin@admin.com",
                 "password" => "123123"
             ]);
