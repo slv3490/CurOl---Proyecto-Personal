@@ -41,7 +41,7 @@ class EloquentCourseRepository extends BaseRepository implements CourseRepositor
     private function saveImage(CourseRequest $request): string
     {
         //Generate the image name
-        $extension = $request->image_uri->getClientOriginalExtension();
+        $extension = $request->file("image_uri")->getClientOriginalExtension();
         $imageName = md5(uniqid(rand(), true)).".". $extension;
 
         //Read and save the image in the file
@@ -62,7 +62,7 @@ class EloquentCourseRepository extends BaseRepository implements CourseRepositor
 
     private function createImage(CourseRequest $request): string|null
     {
-        if($request->image_uri) {
+        if($request->hasFile("image_uri") && $request->file("image_uri")->isValid()) {
             $imageName = $this->saveImage($request);
         }
         return $imageName ?? null;
