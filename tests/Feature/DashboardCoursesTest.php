@@ -54,6 +54,7 @@ class DashboardCoursesTest extends TestCase
 
     public function test_can_create_a_new_course(): void
     {
+        $this->withoutMiddleware();
         Storage::fake('public');
         $file = UploadedFile::fake()->image('testImage.webp')->size(15);
         $filePath = $file->store('images', "public");
