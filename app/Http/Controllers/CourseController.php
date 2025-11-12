@@ -48,7 +48,7 @@ class CourseController extends Controller
         //Save the image and create the course
         $course = $this->repository->createCourse($request);
 
-        if($course) {
+        if(!$course) {
             return redirect()->route("iniciar-session");
         }
         return redirect()->route("course.index");
