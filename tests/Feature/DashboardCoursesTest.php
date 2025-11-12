@@ -9,6 +9,7 @@ use App\Models\Course;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\UploadedFile;
+use Database\Seeders\CategorySeeder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -54,6 +55,7 @@ class DashboardCoursesTest extends TestCase
 
     public function test_can_create_a_new_course(): void
     {
+        $this->seed(CategorySeeder::class);
         $this->withoutExceptionHandling();
         $this->withoutMiddleware();
         Storage::fake('public');
@@ -64,16 +66,6 @@ class DashboardCoursesTest extends TestCase
         $user->givePermissionTo("create lessons");
         $user->givePermissionTo("read lessons");
 
-        $category1 = Category::create([
-            "name" => "rar"
-        ]);
-        $category2 = Category::create([
-            "name" => "rrrrrr"
-        ]);
-        $category3 = Category::create([
-            "name" => "ssssd"
-        ]);
-
         $response = $this->actingAs($user)->post(route("store-courses"), [
             "title" => "Course about food",
             "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil consequuntur pariatur debitis, ad molestiae libero reiciendis earum odit voluptate eos excepturi veritatis enim dolor officiis optio at fugit esse?",
@@ -81,16 +73,13 @@ class DashboardCoursesTest extends TestCase
             "url" => md5(uniqid(rand(), true)),
             "price" => 20.9,
             "user_id" => $user->id,
-            "category_id" => "$category1->id, $category2->id, $category3->id"
+            "category_id" => "2, 3, 5"
         ]);
         
         Storage::disk('public')->assertExists("images/" . basename($filePath));
         $response->assertStatus(302);
         $response->assertRedirect(route("course.index"));
         $user->delete();
-        $category1->delete();
-        $category2->delete();
-        $category3->delete();
     }
 
     public function test_can_see_dashboard_update_course_page() : void
