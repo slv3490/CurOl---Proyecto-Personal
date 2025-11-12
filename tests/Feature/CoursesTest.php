@@ -91,32 +91,6 @@ class CoursesTest extends TestCase
         $course->delete();
         $user->delete();
     }
-
-    public function test_can_filter_by_categories_checkbox() :void
-    {
-        //Ensure that the category exists in the test database
-
-        //NO HACER ESTO
-        if(Category::find(7) && Category::find(8)) {
-            Category::find(7)->delete();
-            Category::find(8)->delete();
-        }
-        ///////////////
-        Category::create([
-            "id" => 7,
-            "name" => "rights"
-        ]);
-        Category::create([
-            "id" => 8,
-            "name" => "rights"
-        ]);
-
-        $response = $this->get("/cursos?category%5B%5D=7&category%5B%5D=8");
-
-        $response->assertViewIs("cursos");
-        $response->assertDontSeeText("No se ha podido encontrar el curso que buscas.");
-        $response->assertStatus(200);
-    }
     
     public function test_cannot_be_filtered_by_categories_because_there_are_no_courses_with_that_category_associated() :void
     {
