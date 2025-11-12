@@ -73,7 +73,7 @@ Route::middleware(['auth', "verified"])->group(function () {
     Route::delete("/dashboard/delete-role/{id}", [RolesController::class, "deleteRole"])->middleware("user.has.any.permission:delete roles")->name("delete-roles");
 
     //Courses
-    Route::get("/dashboard/courses", [CourseController::class, "index"])->name("course.index");
+    Route::get("/dashboard/courses", [CourseController::class, "index"])->middleware("user.has.any.permission:read lessons,spectator")->name("course.index");
     Route::get("/courses/{courseUrl}/watch/{lesson}", [CourseController::class, "watchCourse"])->middleware("user.has.a.course")->name("courses.watch");
     Route::get("/dashboard/courses/create-courses", [CourseController::class, "createCourses"])->middleware("user.has.any.permission:read lessons,spectator")->name("create-courses");
     Route::post("/dashboard/courses/create-courses", [CourseController::class, "storeCourses"])->middleware("user.has.any.permission:create lessons")->name("store-courses");
