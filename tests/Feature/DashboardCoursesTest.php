@@ -66,10 +66,10 @@ class DashboardCoursesTest extends TestCase
         $response = $this->actingAs($user)->post(route("store-courses"), [
             "title" => "Course about food",
             "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil consequuntur pariatur debitis, ad molestiae libero reiciendis earum odit voluptate eos excepturi veritatis enim dolor officiis optio at fugit esse?",
-            "image_uri" => $file->hashName(),
+            "image_uri" => $file,
             "url" => md5(uniqid(rand(), true)),
-            "price" => 20,
-            "user_id" => Auth::user()->id,
+            "price" => 20.9,
+            "user_id" => $user->id,
             "category_id" => "3, 5, 6"
         ]);
         
