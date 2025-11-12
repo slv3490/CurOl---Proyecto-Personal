@@ -58,6 +58,7 @@ class DashboardCoursesTest extends TestCase
         $file = UploadedFile::fake()->image('testImage.webp')->size(15);
         $filePath = $file->store('images', "public");
         $user = User::factory()->create();
+        $user->markEmailAsVerified();
         $user->givePermissionTo("create lessons");
         $user->givePermissionTo("read lessons");
 

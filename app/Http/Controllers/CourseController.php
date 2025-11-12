@@ -49,10 +49,10 @@ class CourseController extends Controller
         $course = $this->repository->createCourse($request);
 
         if(!$course) {
-            return redirect()->route("iniciar-session");
+            return redirect()->back()->withInput()->withErrors("Failed to create the course.");
         }
-        return redirect()->route("course.index");
         
+        return redirect()->route("course.index");
     }
 
     public function showCourses(Course $course): View {
