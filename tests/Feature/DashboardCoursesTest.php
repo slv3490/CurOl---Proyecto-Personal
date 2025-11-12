@@ -64,6 +64,16 @@ class DashboardCoursesTest extends TestCase
         $user->givePermissionTo("create lessons");
         $user->givePermissionTo("read lessons");
 
+        $category1 = Category::create([
+            "name" => "rar"
+        ]);
+        $category2 = Category::create([
+            "name" => "rrrrrr"
+        ]);
+        $category3 = Category::create([
+            "name" => "ssssd"
+        ]);
+
         $response = $this->actingAs($user)->post(route("store-courses"), [
             "title" => "Course about food",
             "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil consequuntur pariatur debitis, ad molestiae libero reiciendis earum odit voluptate eos excepturi veritatis enim dolor officiis optio at fugit esse?",
@@ -71,13 +81,16 @@ class DashboardCoursesTest extends TestCase
             "url" => md5(uniqid(rand(), true)),
             "price" => 20.9,
             "user_id" => $user->id,
-            "category_id" => "3"
+            "category_id" => "$category1->id, $category2->id, $category3->id"
         ]);
         
         Storage::disk('public')->assertExists("images/" . basename($filePath));
         $response->assertStatus(302);
         $response->assertRedirect(route("course.index"));
         $user->delete();
+        $category1->delete();
+        $category2->delete();
+        $category3->delete();
     }
 
     public function test_can_see_dashboard_update_course_page() : void
