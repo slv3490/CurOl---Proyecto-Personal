@@ -28,6 +28,7 @@ class LoginTest extends TestCase
         $user = User::where('email', 'admin@admin.com')->first();
         if(!$user) {
             User::create([
+                "name" => "admin",
                 "email" => "admin@admin.com",
                 "password" => "12345"
             ]);
