@@ -28,7 +28,7 @@ class CourseRequest extends FormRequest
             "image_uri" => "nullable|image|mimes:jpeg,png,jpg,gif,svg,avif,webp",
             "url" => "nullable",
             "user_id" => "nullable",
-            "category_id" => "required|exists:categories,id"
+            "category_id" => "required|string"
         ];
     }
 }

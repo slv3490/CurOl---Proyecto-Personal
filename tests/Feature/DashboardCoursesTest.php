@@ -71,7 +71,7 @@ class DashboardCoursesTest extends TestCase
             "description" => "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil consequuntur pariatur debitis, ad molestiae libero reiciendis earum odit voluptate eos excepturi veritatis enim dolor officiis optio at fugit esse?",
             "image_uri" => $file,
             "url" => md5(uniqid(rand(), true)),
-            "price" => 20.9,
+            "price" => 20,
             "user_id" => $user->id,
             "category_id" => "2,3,5"
         ]);
