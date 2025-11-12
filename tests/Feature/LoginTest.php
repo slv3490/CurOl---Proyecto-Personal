@@ -30,7 +30,7 @@ class LoginTest extends TestCase
             User::create([
                 "name" => "admin",
                 "email" => "admin@admin.com",
-                "password" => "12345"
+                "password" => "123123"
             ]);
         }
         Livewire::test(LogIn::class)
