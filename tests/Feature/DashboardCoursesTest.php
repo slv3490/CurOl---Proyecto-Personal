@@ -71,7 +71,7 @@ class DashboardCoursesTest extends TestCase
             "url" => md5(uniqid(rand(), true)),
             "price" => 20.9,
             "user_id" => $user->id,
-            "category_id" => "3, 5, 6"
+            "category_id" => "3"
         ]);
         
         Storage::disk('public')->assertExists("images/" . basename($filePath));
@@ -154,7 +154,7 @@ class DashboardCoursesTest extends TestCase
             "url" => $course->url,
             "price" => 8,
             "user_id" => $user->id,
-            "category_id" => "3, 4, 5"
+            "category_id" => "3"
         ]);
         $response->assertStatus(302);
 
