@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
-    libonig-dev \
     unzip \
     git \
     && docker-php-ext-configure gd \
@@ -17,7 +16,6 @@ RUN apt-get update && apt-get install -y \
         pdo \
         pdo_mysql \
         mbstring \
-        tokenizer \
         xml \
         pcntl \
         intl \
@@ -53,4 +51,4 @@ RUN chown -R www-data:www-data /var/www
 
 EXPOSE 80
 
-CMD service nginx start && php-fpm
+CMD ["sh", "-c", "service nginx start && php-fpm"]
