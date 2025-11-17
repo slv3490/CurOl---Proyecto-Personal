@@ -53,4 +53,4 @@ jobs:
       uses: docker/build-push-action@v6
       with:
         push: true
-        tags: ghcr.io/slv3490/CurOl---Proyecto-Personal:latest
+        tags: ghcr.io/slv3490/curol---proyecto-personal:latest
