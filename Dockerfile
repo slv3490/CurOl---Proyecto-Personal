@@ -1,7 +1,6 @@
-# Etapa 1 — Dependencias de Laravel
 FROM php:8.2-fpm AS build
 
-# Instalar extensiones necesarias
+# Instalar dependencias necesarias
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -10,30 +9,43 @@ RUN apt-get update && apt-get install -y \
     libfreetype6-dev \
     libonig-dev \
     libxml2-dev \
+    libzip-dev \
     zip \
-    curl
+    curl \
+    pkg-config \
+    libicu-dev \
+    g++ \
+    make
 
-RUN docker-php-ext-install pdo pdo_mysql mbstring tokenizer xml pcntl
+# Configurar extensiones de PHP
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg
+
+RUN docker-php-ext-install \
+    pdo \
+    pdo_mysql \
+    mbstring \
+    tokenizer \
+    xml \
+    pcntl \
+    intl \
+    zip \
+    gd
 
 # Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
 
-# Copiar archivos del proyecto
+# Copiar el proyecto
 COPY . .
 
 # Instalar dependencias de Laravel
 RUN composer install --no-dev --optimize-autoloader
 
-# Optimizar Laravel
-RUN php artisan config:clear && \
-    php artisan route:clear && \
-    php artisan view:clear && \
-    php artisan optimize
+RUN php artisan optimize
 
 
-# Etapa 2 — Imagen final con Nginx + PHP-FPM
+# Imagen final
 FROM php:8.2-fpm
 
 # Instalar Nginx
@@ -41,13 +53,10 @@ RUN apt-get update && apt-get install -y nginx
 
 WORKDIR /var/www
 
-# Copiar archivos ya construidos de Laravel
 COPY --from=build /var/www /var/www
 
-# Copiar configuración Nginx
 COPY ./docker/nginx.conf /etc/nginx/sites-available/default
 
-# Permisos
 RUN chown -R www-data:www-data /var/www
 
 EXPOSE 80
