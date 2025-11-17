@@ -21,20 +21,6 @@ RUN apt-get update && apt-get install -y \
         zip \
         gd
 
-# Configurar extensiones de PHP
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg
-
-RUN docker-php-ext-install \
-    pdo \
-    pdo_mysql \
-    mbstring \
-    tokenizer \
-    xml \
-    pcntl \
-    intl \
-    zip \
-    gd
-
 # Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
@@ -47,7 +33,6 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader
 
 RUN php artisan optimize
-
 
 # Imagen final
 FROM php:8.2-fpm
