@@ -1,15 +1,17 @@
 FROM php:8.2-fpm AS build
 
-# Instalar dependencias del sistema operativo
 RUN apt-get update && apt-get install -y \
     libicu-dev \
     libzip-dev \
+    zlib1g-dev \
     libpng-dev \
     libjpeg62-turbo-dev \
     libfreetype6-dev \
     unzip \
     git \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-configure gd \
+        --with-freetype=/usr/include \
+        --with-jpeg=/usr/include \
     && docker-php-ext-install \
         pdo \
         pdo_mysql \

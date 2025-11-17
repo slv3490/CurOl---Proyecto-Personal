@@ -51,6 +51,8 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build and push
       uses: docker/build-push-action@v6
+      env:
+        DOCKER_BUILDKIT: 0
       with:
         push: true
         tags: ghcr.io/slv3490/curol---proyecto-personal:latest
