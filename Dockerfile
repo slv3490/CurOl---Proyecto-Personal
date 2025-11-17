@@ -1,4 +1,4 @@
-FROM php:8.2-fpm AS build
+FROM php:8.2-fpm-bullseye AS build
 
 RUN apt-get update && apt-get install -y \
     libicu-dev \
@@ -22,29 +22,19 @@ RUN apt-get update && apt-get install -y \
         zip \
         gd
 
-# Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www
-
-# Copiar el proyecto
 COPY . .
-
-# Instalar dependencias de Laravel
 RUN composer install --no-dev --optimize-autoloader
-
 RUN php artisan optimize
 
-# Imagen final
-FROM php:8.2-fpm
+FROM php:8.2-fpm-bullseye
 
-# Instalar Nginx
 RUN apt-get update && apt-get install -y nginx
-
 WORKDIR /var/www
 
 COPY --from=build /var/www /var/www
-
 COPY ./docker/nginx.conf /etc/nginx/sites-available/default
 
 RUN chown -R www-data:www-data /var/www
