@@ -1,21 +1,25 @@
 FROM php:8.2-fpm AS build
 
-# Instalar dependencias necesarias
+# Instalar dependencias del sistema operativo
 RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    libonig-dev \
-    libxml2-dev \
-    libzip-dev \
-    zip \
-    curl \
-    pkg-config \
     libicu-dev \
-    g++ \
-    make
+    libzip-dev \
+    libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    unzip \
+    git \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install \
+        pdo \
+        pdo_mysql \
+        mbstring \
+        tokenizer \
+        xml \
+        pcntl \
+        intl \
+        zip \
+        gd
 
 # Configurar extensiones de PHP
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
